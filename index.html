@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>edit-word demo</title>
+    <script src="fds-input.js" defer></script>
+    <script src="fds-form.js" defer></script>
+    <script src="form-validation.js" defer></script>
+    <link type="text/css" rel="stylesheet" href="fds/css/dkfds-virkdk.css" />
+  </head>
+  <body>
+
+
+<h1 class="mt-8 align-text-center" >Inputfelter</h1>
+
+<table class="table">
+<thead>
+    <tr>
+        <th>FDS plain</th>
+        <th>FDS webcomponents</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>
+            <div class="form-group">
+                <label class="form-label" for="input-type-text">
+                    Inputfelt med label
+                </label>
+            
+                <input class="form-input" id="input-type-text" name="input-type-text"
+                    type="text" required />
+            </div>
+                        
+        </td>
+
+        <td>
+            <fds-input id="ex1">
+                <label>Inputfelt med label2</label>
+            </fds-input>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group">
+                <label class="form-label" for="input-type-help-text">
+                    Inputfelt med label og hjælpetekst
+                </label>
+                <span class="form-hint" id="input-type-help-text-hint">
+                    Fx 12345678
+                </span>
+                <input class="form-input" id="input-type-help-text" name="input-type-help-text" type="text" aria-describedby="input-type-help-text-hint " required="">            
+            </div>
+        </td>
+        <td>
+            <fds-input id="ex2">
+                <label>
+                    Inputfelt med label <i>html</i> <span style="color: green;">og</span> <b>hjælpetekst2</b>
+                </label>
+                <fds-hint>
+                    Fx 12345678
+                </fds-hint>
+            </fds-input>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group form-error">
+                <label class="form-label" for="form-error">
+                    Hvad hedder dit kursus?
+                </label>
+                <span class="form-hint" id="form-error-hint">
+                    Fx: Skriv godt
+                </span>
+                <span class="form-error-message" id="form-error-error">
+                    <span class="sr-only">Fejl:</span> Giv dit kursus et navn
+                </span><input class="form-input" id="form-error" name="form-error"
+                    type="text" aria-invalid="true"
+                    aria-describedby="form-error-hint form-error-error " required />            
+            </div>
+        </td>
+        <td>
+            <fds-input id="ex3" data-error="Giv dit kursus et navn">
+                <label>
+                    Hvad hedder din fejl?
+                </label>
+                <fds-hint>
+                    Fx: Skriv godt
+                </fds-hint>
+            </fds-input>
+        </td>
+    </tr>
+    
+
+</tbody>
+</table>
+
+
+
+<h1 class="mt-8 align-text-center">Validering</h1>
+<table class="table">
+<thead>
+    <tr>
+        <th>FDS plain</th>
+        <th>FDS webcomponents</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>
+            <div class="alert alert-error mt-0 mb-8" role="alert" aria-atomic="true"
+            data-module="error-summary">
+            <div class="alert-body">
+                <p class="alert-heading">Der er problemer</p>
+                <ul class="alert-text nobullet-list">
+                    <li><a class="function-link" href="#date-field-year">Datoen for
+                            udløbsdato på dit pas bør inkludere årstal</a></li>
+                    <li><a class="function-link" href="#zipcode-field">Indtast
+                            postnummer - fx 4000</a></li>
+                </ul>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="input-type-help-text">
+                    Hvad hedder dit kursus?
+                </label>                
+                <input class="form-input" id="input-type-help-text" name="input-type-help-text" type="text" aria-describedby="input-type-help-text-hint " required="" value="Skriv godt">
+                     
+                
+            </div>
+            
+
+            <h2>Form Summary</h2>
+
+
+            <div class="mt-6 mb-7">
+
+                <div class="row row-bordered no-gutters">
+                    <div class="col-12 col-md-4 weight-semibold">
+                        Kursusnavn
+                    </div>
+                    <div class="col-12 col-md-6">
+                        Skriv godt
+                    </div>
+                    <div class="col-12 col-md-2 align-text-md-right">
+                        <a href="/pages/eksempler/trinformular-til-registrering/registrering-4/?r=/eksempler/selvbetjeningsloesninger/%23trinformularregistrering">Redigér<span class="sr-only"> har du tidligere lavet en
+                                lignende registrering?</span></a>
+                    </div>
+                </div>
+
+                
+
+                <div class="row row-bordered no-gutters">
+                    <div class="col-12 col-md-4 weight-semibold">
+                        Dato for registreringen
+                    </div>
+                    <div class="col-12 col-md-6">
+                        10.10.2010
+                    </div>
+                    <div class="col-12 col-md-2 align-text-md-right">
+                        <a href="#">Redigér<span class="sr-only"> dato for
+                                registreringen</span></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="button button-primary mt-5">
+            Sign and submit
+            </button>
+
+        </td>
+        <td>
+
+            <fds-form id="first">
+                <label class="error-alert-heading">Der er også problemer her</label>
+                
+                <fds-input id="ex-postnummer">
+                    <label>
+                        Inputfelt med fejl i label <i>html</i> <span style="color: green;">og</span> <b>hjælpetekst2</b>
+                    </label>                    
+                </fds-input>
+
+                
+                <button class="button button-primary mt-5 mr-5 " onClick="validateForm('first')">Validate</button>
+                <button class="button button-secondary mt-5" onClick="">Reset</button>
+
+            </fds-form>
+
+            <hr>
+
+            <form id="second">
+                                       
+
+            <fds-input id="ex5">
+                <label>
+                    Fornavn
+                </label>                
+            </fds-input>
+
+            <fds-input id="ex5">
+                <label>
+                    Efternavn
+                </label>                
+            </fds-input>
+
+            <div class="mt-6 mb-7">
+
+                <div class="row row-bordered no-gutters">
+                    <div class="col-12 col-md-4 weight-semibold">
+                        For- og efternavn
+                    </div>
+                    <div class="col-12 col-md-6">
+                        felt1 felt2
+                    </div>
+                    <div class="col-12 col-md-2 align-text-md-right">
+                        <a href="/pages/eksempler/trinformular-til-registrering/registrering-4/?r=/eksempler/selvbetjeningsloesninger/%23trinformularregistrering">Redigér<span class="sr-only"> har du tidligere lavet en
+                                lignende registrering?</span></a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <button class="button button-primary mt-5"
+                onClick="validateForm()">
+                Validate
+            </button>
+
+
+            <fds-summary>
+            
+            </fds-summary>
+        
+        <form>
+            
+        </td>
+    </tr>
+
+    
+</tbody>
+</table>
+
+
+<hr>
+
+</body>
+
+</html>

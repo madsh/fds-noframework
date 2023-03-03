@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Simple Web Form</title>
+  </head>
+  <body>
+    <form id="form">
+      <ul id="error-list"></ul>
+      <danish-firstname id="custom-firstname" label="First Name <i>(with Æ)</i>:"></danish-firstname>
+      <div id="firstname-error"></div>
+      <div>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+      </div>
+      <div id="phone-error"></div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      class DanishFirstName extends HTMLElement {
+        constructor() {
+          super();
+
+          const id = this.getAttribute('id');
+          const label = this.getAttribute('label');
+
+          this.innerHTML = `
+            <div>
+              <label for="${id}">${label}</label>
+              <input type="text" id="${id}" name="firstname">
+            </div>
+          `;
+        }
+      }
+      customElements.define('danish-firstname', DanishFirstName);
+    </script>
+
+    <script>
+      const form = document.getElementById('form');
+      const firstnameError = document.getElementById('firstname-error');
+      const phoneError = document.getElementById('phone-error');
+      const errorList = document.getElementById('error-list');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const firstname = document.getElementById('custom-firstname').value;
+        const phone = document.getElementById('phone').value;
+        const hasAE = firstname.includes('Æ');
+        let isEven = false;
+
+        firstnameError.innerHTML = '';
+        phoneError.innerHTML = '';
+        errorList.innerHTML = '';
+
+        if (!hasAE) {
+          firstnameError.innerHTML = 'First name must contain the Danish letter Æ';
+          errorList.innerHTML += '<li>First name must contain the Danish letter Æ</li>';
+        }
+
+        if (phone) {
+          isEven = parseInt(phone) % 2 === 0;
+          if (!isEven) {
+            phoneError.innerHTML = 'Phone number must be an even number';
+            errorList.innerHTML += '<li>Phone number must be an even number</li>';
+          }
+        }
+
+        if (hasAE && isEven) {
+          console.log(`First name: ${firstname}`);
+          console.log(`Phone number: ${phone}`);
+        }
+      });
+    </script>
+  </body>
+</html>
